@@ -3,7 +3,7 @@ const peopleInput = document.querySelector("#number__of__people");
 const buttons = document.querySelectorAll("button.tip__option");
 const customInput = document.querySelector("#custom__option");
 const percentages = [0.05, 0.1, 0.15, 0.25, 0.5];
-const billInputValidation = /^[^.0-9]+(?:\.[^.0-9]+)*$/;
+const billInputValidation = /^(?!-?\d+(\.\d+)?$).+/;
 const peopleInputValidation = /[^0-9]/;
 const billIndicator = document.querySelector("#bill__indicator");
 const customIndicator = document.querySelector("#custom__indicator");
@@ -56,7 +56,6 @@ const validateInput = (
     indicatorElement.textContent = errorMessage;
     indicatorElement.classList.remove("hidden");
   } else {
-    inputElement.value = inputValue;
     inputElement.classList.remove("invalid__input");
     indicatorElement.classList.add("hidden");
     switch (inputType) {
@@ -106,14 +105,14 @@ handleInput(
   customIndicator,
   "percentage",
   billInputValidation,
-  "Must be a number!"
+  "Must be a valid number!"
 );
 handleInput(
   peopleInput,
   peopleIndicator,
   "people",
   peopleInputValidation,
-  "Must be a valid number!"
+  "Must be an integer!"
 );
 
 const selectPercentage = (button) => {
