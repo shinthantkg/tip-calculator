@@ -148,7 +148,13 @@ const handleReset = () => {
     selectedButton = null;
   }
   currentPercentage = 0;
+  document.querySelectorAll("input").forEach((input) => {
+    input.value = "";
+    input.classList.remove("invalid__input");
+    document.querySelectorAll(".invalid__input__indicator")[Array.from(document.querySelectorAll("input")).indexOf(input)].classList.add("hidden");
+  })
   billInput.value = "";
+  billInput.classList.remove("invalid__input");
   customInput.value = "";
   peopleInput.value = "";
   resetButton.blur();
